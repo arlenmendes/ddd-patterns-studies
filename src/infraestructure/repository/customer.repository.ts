@@ -1,7 +1,7 @@
-import Customer from "../../domain/entity/customer";
-import Address from "../../domain/entity/address";
-import CustomerRepositoryInterface from "../../domain/repository/customer-repository.interface";
-import CustomerModel from "../db/sequelize/model/customer.model";
+import Customer from '../../domain/entity/customer';
+import Address from '../../domain/entity/address';
+import CustomerRepositoryInterface from '../../domain/repository/customer-repository.interface';
+import CustomerModel from '../db/sequelize/model/customer.model';
 
 export default class CustomerRepository implements CustomerRepositoryInterface {
   async create(entity: Customer): Promise<void> {
@@ -32,7 +32,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
         where: {
           id: entity.id,
         },
-      }
+      },
     );
   }
 
@@ -46,7 +46,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
         rejectOnEmpty: true,
       });
     } catch (error) {
-      throw new Error("Customer not found");
+      throw new Error('Customer not found');
     }
 
     const customer = new Customer(id, customerModel.name);
@@ -54,7 +54,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       customerModel.street,
       customerModel.number,
       customerModel.zipcode,
-      customerModel.city
+      customerModel.city,
     );
     customer.changeAddress(address);
     return customer;
@@ -63,17 +63,17 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
   async findAll(): Promise<Customer[]> {
     const customerModels = await CustomerModel.findAll();
 
-    const customers = customerModels.map((customerModels) => {
-      let customer = new Customer(customerModels.id, customerModels.name);
-      customer.addRewardPoints(customerModels.rewardPoints);
+    const customers = customerModels.map((customerModel) => {
+      const customer = new Customer(customerModel.id, customerModel.name);
+      customer.addRewardPoints(customerModel.rewardPoints);
       const address = new Address(
-        customerModels.street,
-        customerModels.number,
-        customerModels.zipcode,
-        customerModels.city
+        customerModel.street,
+        customerModel.number,
+        customerModel.zipcode,
+        customerModel.city,
       );
       customer.changeAddress(address);
-      if (customerModels.active) {
+      if (customerModel.active) {
         customer.enable();
       }
       return customer;
