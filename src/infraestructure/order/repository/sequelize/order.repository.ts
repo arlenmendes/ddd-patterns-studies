@@ -5,10 +5,6 @@ import OrderItemModel from './order-item.model';
 import OrderModel from './order.model';
 
 export default class OrderRepository implements OrderRepositoryInterface {
-  findAll(): Promise<Order[]> {
-    throw new Error('Method not implemented.');
-  }
-
   async create(entity: Order): Promise<void> {
     await OrderModel.create(
       {
@@ -62,7 +58,7 @@ export default class OrderRepository implements OrderRepositoryInterface {
     );
   }
 
-  static async findAll(): Promise<Order[]> {
+  async findAll(): Promise<Order[]> {
     const ordersModel = await OrderModel.findAll(
       { include: [{ model: OrderItemModel }] },
     );

@@ -223,7 +223,7 @@ describe('Order repository test', () => {
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);
 
-    const foundOrders = await OrderRepository.findAll();
+    const foundOrders = await orderRepository.findAll();
 
     expect([order]).toEqual(foundOrders);
   });
