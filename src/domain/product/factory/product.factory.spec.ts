@@ -14,4 +14,10 @@ describe('Product Factory unit test', () => {
     expect(productDoublePrice.price).toBe(30);
     expect(productDoublePrice.constructor.name).toBe('ProductDoublePrice');
   });
+
+  it('should throw an error when create a product with invalid type', () => {
+    expect(() => ProductFactory.create('Invalid Type', 'Produto Dobro Preco', 15)).toThrowError(
+      'Invalid type',
+    );
+  });
 });
