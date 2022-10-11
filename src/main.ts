@@ -1,3 +1,3 @@
-import Customer from "./domain/entity/customer";
+import Customer from './domain/customer/entity/customer';
 
-let customer = new Customer('123', 'Arlen');
+const customer = new Customer('123', 'Arlen');
