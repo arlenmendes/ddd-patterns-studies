@@ -1,4 +1,4 @@
-import Anddress from './obejct-values/address';
+import Address from './obejct-values/address';
 import Customer from './customer';
 
 describe('Customer unit tests', () => {
@@ -28,7 +28,7 @@ describe('Customer unit tests', () => {
   it('should activate  Customer', () => {
     // Arrange
     const customer = new Customer('123', 'Joao');
-    const address = new Anddress('Street One', 123, '37200-000', 'Lavras');
+    const address = new Address('Street One', 123, '37200-000', 'Lavras');
 
     customer.changeAddress(address);
     customer.enable();

@@ -1,7 +1,7 @@
 import CustomerInterface from './customer.interface';
 import Address from './obejct-values/address';
 
-export default class Customer implements CustomerInterface {
+export default class Customer {
   private _id: string;
 
   private _name: string;
